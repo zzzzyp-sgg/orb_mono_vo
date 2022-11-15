@@ -89,7 +89,7 @@ void pose_eatimation_2d2d(vector<KeyPoint> keypoints_1,
                           vector<DMatch> matches,
                           Mat &R, Mat &t)
 {
-    // 相机内参， TUM, Freiburg2
+    // 相机内参， KITTI
     Mat K = (Mat_<double>(3, 3) << 718.8560, 0, 607.1928, 0, 718.8560, 185.2157, 0, 0, 1);
 
     //-- 把匹配点转换为vector<Point2f>的形式
@@ -108,8 +108,8 @@ void pose_eatimation_2d2d(vector<KeyPoint> keypoints_1,
     // std::cout << "Fundamental_matrix is " << std::endl << fundamental_matrix << std::endl;
 
     //-- 计算本质矩阵
-    Point2d principal_point(607.1928, 185.2157);  // 相机光心， TUM dataset标准值
-    double focal_length =718.8560;               // 相机焦距, TUM dataset标准值
+    Point2d principal_point(607.1928, 185.2157);  // 相机光心， KITTI
+    double focal_length =718.8560;               // 相机焦距,  KITTI
     Mat essential_matrix;
     essential_matrix = findEssentialMat(points1, points2, focal_length, principal_point);
     // std::cout << "essential_matrix is " << std::endl << essential_matrix << std::endl;
